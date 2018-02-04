@@ -11,6 +11,8 @@ public class UnitychanController : MonoBehaviour {
 	private float forwardForce = 800.0f;
 	// 左右に移動するための力
 	private float turnForce = 500.0f;
+	// ジャンプするための力
+	private float upForce = 500.f;
 	// 左右の移動できる範囲
 	private float movableRange = 3.4f;
 
@@ -35,6 +37,18 @@ public class UnitychanController : MonoBehaviour {
 		} else 	if(Input.GetKey (KeyCode.RightArrow) && this.transform.position.x < this.movableRange){
 			// 右に移動
 			this.myRigidbody.AddForce(this.turnForce, 0, 0);
+		}
+
+		// Jumpステートの場合はjumpにfalseをセットする
+		if (this.myAnimator.GetCurrentAnimatorStateInfo(0).IsName("Jump")){
+			this.myAnimator.SetBool ("Jump", false);
+		}
+		// ジャンプしていない時にスペースが押されたらジャンプする
+		if(Input.GetKeyDown(KeyCode.Space) && this.transform.position.y < 0.5f ){
+			// ジャンプアニメを再生
+			this.myAnimator.SetBool("Jump", true);
+			// Unityちゃんに上方向の力を加える
+			this.myRigidbody.AddForce(this.transform.up * this.upForce);
 		}
 	}
 }
