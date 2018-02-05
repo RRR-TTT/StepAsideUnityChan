@@ -74,6 +74,12 @@ public class UnitychanController : MonoBehaviour {
 		//ゴール地点に到達した場合
 		if (other.gameObject.tag == "GoalTag") {
 			this.isEnd = true;
-		}                
+		}
+
+		//コインに衝突した場合
+		if (other.gameObject.tag == "CoinTag") {
+			//接触したコインのオブジェクトを破棄
+			Destroy (other.gameObject);
+		}
 	}
 }
