@@ -78,6 +78,8 @@ public class UnitychanController : MonoBehaviour {
 
 		//コインに衝突した場合
 		if (other.gameObject.tag == "CoinTag") {
+			//パーティクルを再生
+			GetComponent<ParticleSystem> ().Play ();
 			//接触したコインのオブジェクトを破棄
 			Destroy (other.gameObject);
 		}
