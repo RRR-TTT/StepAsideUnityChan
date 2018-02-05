@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23795744966380418}
   - component: {fileID: 65039820052663736}
   m_Layer: 0
-  m_Name: TrafficCone
+  m_Name: TrafficConePrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
