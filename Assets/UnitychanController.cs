@@ -18,7 +18,10 @@ public class UnitychanController : MonoBehaviour {
 	private float coefficient = 0.95f;
 	//ゲーム終了時に表示するテキスト
 	private GameObject stateText;
-
+	//スコアを表示するテキスト
+	private GameObject scoreText;
+	//得点
+	private int score = 0;
 	//ゲーム終了の判定
 	private bool isEnd = false;
 	// 左右の移動できる範囲
@@ -34,6 +37,8 @@ public class UnitychanController : MonoBehaviour {
 		this.myRigidbody = GetComponent<Rigidbody>();
 		//シーン中のstateTextオブジェクトを取得
 		this.stateText = GameObject.Find("GameResultText");
+		//シーン中のscoreTextオブジェクトを取得
+		this.scoreText = GameObject.Find("ScoreText");
 	}
 	
 	// Update is called once per frame
@@ -87,6 +92,10 @@ public class UnitychanController : MonoBehaviour {
 
 		//コインに衝突した場合
 		if (other.gameObject.tag == "CoinTag") {
+			// スコアを加算
+			this.score += 10;
+			//ScoreText獲得した点数を表示
+			this.scoreText.GetComponent<Text> ().text = "Score " + this.score + "pt";
 			//パーティクルを再生
 			GetComponent<ParticleSystem> ().Play ();
 			//接触したコインのオブジェクトを破棄
